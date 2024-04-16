@@ -1,6 +1,6 @@
 <?php
 require 'conect.php';
-
+// Este eS el php que me muestra arriba GANANCIAS DE HOY EN GRANDE EN EL TOP
 $fechaActual = date('Y-m-d');
 
 try {
@@ -12,7 +12,7 @@ try {
     $totalGastos = $gastos['total_gastos'];
 
     // Preparar la consulta SQL para obtener la suma de las ventas del día
-    $sqlVentas = "SELECT SUM(monto) AS total_ventas FROM Ventas WHERE fecha = ?";
+    $sqlVentas = "SELECT SUM(monto) AS total_ventas FROM Ventas WHERE fecha = ? and estado = '0'";
     $stmtVentas = $conn->prepare($sqlVentas);
     $stmtVentas->execute([$fechaActual]);
     $ventas = $stmtVentas->fetch(PDO::FETCH_ASSOC);
